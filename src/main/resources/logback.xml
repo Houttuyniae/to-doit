@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <!--在当前项目磁盘的根目录下-->
+	<property name="LOG_HOME" value="/logs/study-utils/" />
+
+	<appender name="Console" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%d{H:mm} %-5level [%logger{16}] %msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="normalLog"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<!-- 配置滚动的策略 一天一次-->
+        <!--还有别的策略-->
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>${LOG_HOME}/web.normal.%d{yyyy-MM-dd}.log
+			</FileNamePattern>
+			<!-- 保存的最长时间：天数 -->
+			<MaxHistory>30</MaxHistory>
+		</rollingPolicy>
+		<triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <!--每个文件最大10mb-->
+			<maxFileSize>10MB</maxFileSize>
+		</triggeringPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>
+                %d{HH:mm:ss.SSS} [%thread] %-5level %logger{16} - %msg%n
+			</pattern>
+		</layout>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>ERROR</level>
+			<!--拒绝error日志 与下面相反-->
+            <!--否认error级别-->
+            <!--配置拒绝-->
+			<onMatch>DENY</onMatch>
+            <!--不配置则接受-->
+			<onMismatch>ACCEPT</onMismatch>
+		</filter>
+	</appender>
+	<appender name="errorLog"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<!-- 配置滚动的策略 一天一次-->
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>${LOG_HOME}/web.error.%d{yyyy-MM-dd}.log
+			</FileNamePattern>
+			<!-- 保存的最长时间：天数 -->
+			<MaxHistory>1</MaxHistory>
+		</rollingPolicy>
+		<triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+			<maxFileSize>10MB</maxFileSize>
+		</triggeringPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>
+                %d{HH:mm:ss.SSS} [%thread] %-5level %logger{16} - %msg%n
+			</pattern>
+		</layout>
+        <!--只匹配error级别-->
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>ERROR</level>
+            <!--配置则接受-->
+			<onMatch>ACCEPT</onMatch>
+            <!--不匹配则拒绝-->
+			<onMismatch>DENY</onMismatch>
+		</filter>
+	</appender>
+
+	<!--这个的路径表示这个包下的所有信息全部打印-->
+	<!--可以在细分-->
+    <!--主要用控制表路径-->
+	<logger name="io.todoit" level="debug" >
+		<appender-ref ref="normalLog" />
+		<appender-ref ref="errorLog" />
+	</logger>
+
+    <!--项目全局打印info信息-->
+	<root level="info">
+		<appender-ref ref="Console" />
+	</root>
+</configuration>

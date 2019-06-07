@@ -1,0 +1,74 @@
+#
+#   存放共有配置文件的地方
+#
+
+#server
+server:
+#  端口号
+  port: 8888
+
+#spring
+spring:
+  application:
+    name: todoit
+#  热部署生效
+  devtools:
+    restart:
+      enabled: true
+      #设置重启的目录
+      additional-paths: src/main/java
+      #classpath目录下的WEB-INF文件夹内容修改不重启
+      exclude: WEB-INF/**
+
+  #  环境配置---  application-prod.xml 启用生产环境的配置
+  profiles:
+    active: dev
+
+
+
+#  #######文件上传时配置 multipartfile使用
+#  servlet:
+#    multipart:
+#      #单次上传每个文件的最大大小
+#      max-file-size: 4MB
+#      #单次上传文件总大小
+#      max-request-size: 10MB
+#      # 上传文件的临时目录
+#      #spring.http.multipart.location=
+#      enabled: true
+
+#######文件上传时配置 multipartfile使用
+servlet:
+  common:
+    multipart:
+      #单次上传每个文件的最大大小
+      max-upload-size-per-file: 4096000
+      #单次上传文件总大小
+      max-upload-size: 20480000
+      # 在内存中大小 如果超过则生成硬盘上的临时文件
+      maxInMemorySize: 4096
+      #默认编码方式
+      default-encoding: utf-8
+
+
+
+##mybatis配置
+#mybatis:
+#  #    xml文件路径
+#  mapper-locations: classpath:mapper/**/*Mapper.xml
+#  #    实体类路径
+#  type-aliases-package: classpath:io.todoit.**.entity
+mybatis-plus:
+  mapper-locations: classpath:mapper/**/*Mapper.xml
+  type-aliases-package: classpath:io.todoit.**.entity
+  global-config:
+    #数据库相关配置
+    db-config:
+      #主键类型  AUTO:"数据库ID自增", INPUT:"用户输入ID", ID_WORKER:"全局唯一ID (数字类型唯一ID)", UUID:"全局唯一ID UUID";
+      id-type: AUTO
+      #字段策略 IGNORED:"忽略判断",NOT_NULL:"非 NULL 判断"),NOT_EMPTY:"非空判断"
+      field-strategy: NOT_NULL
+      #驼峰下划线转换
+      column-underline: true
+      logic-delete-value: -1
+      logic-not-delete-value: 0

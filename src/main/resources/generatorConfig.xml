@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+
+<generatorConfiguration>
+    <!-- 引入配置文件 -->
+
+    <classPathEntry
+            location="F:\Repository\repository\mysql\mysql-connector-java\5.1.6\mysql-connector-java-5.1.6.jar" />
+
+
+    <context id="DB2Tables" targetRuntime="MyBatis3">
+        <!-- 生成的Java文件的编码 -->
+        <property name="javaFileEncoding" value="UTF-8"/>
+        <!--  JavaBean 实现序列化接口  -->
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>
+
+        <commentGenerator>
+            <!-- 抑制警告 -->
+            <property name="suppressTypeWarnings" value="true"/>
+            <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+            <property name="suppressAllComments" value="true"/>
+            <!-- 是否生成注释代时间戳-->
+            <property name="suppressDate" value="true"/>
+        </commentGenerator>
+
+        <!--数据库连接的信息：驱动类、连接地址、用户名、密码 -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://120.79.220.43:12336/zmp?useUnicode=true&amp;characterEncoding=UTF-8&amp;zeroDateTimeBehavior=convertToNull"
+                        userId="zmp"
+                        password="DFQMppjd@2018">
+        </jdbcConnection>
+        <!-- 默认false，把JDBC DECIMAL 和 NUMERIC 类型解析为 Integer true，把JDBC DECIMAL 和
+            NUMERIC 类型解析为java.math.BigDecimal -->
+        <!--     <javaTypeResolver>
+                <property name="forceBigDecimals" value="false" />
+            </javaTypeResolver> -->
+        <!--生成Model类存放位置 -->
+        <javaModelGenerator targetPackage="cn.ppjd.vo.admin"
+                            targetProject="g:\dfqm\branches\branch_20180829\common\src\main\java">
+
+            <!-- 是否在当前路径下新加一层schema,eg：fase路径com.oop.eksp.user.model， true:com.oop.eksp.user.model.[schemaName] -->
+            <property name="enableSubPackages" value="false"/>
+            <!-- 是否针对string类型的字段在set的时候进行trim调用 -->
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+        <!--生成映射文件存放位置 -->
+        <sqlMapGenerator targetPackage="mybatis-mapper/tables"
+                         targetProject="g:\dfqm\branches\branch_20180829\common\src\main\resources">
+
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+        <!--生成Dao类存放位置 -->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="cn.ppjd.dao.tables"
+                             targetProject="g:\dfqm\branches\branch_20180829\common\src\main\java">
+
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+
+
+        <!-- tableName:用于自动生成代码的数据库表；domainObjectName:对应于数据库表的javaBean类名 -->
+        <table tableName="zmp_user_coin" domainObjectName="UserCoinVo" enableInsert="false" enableDeleteByPrimaryKey="false"
+               enableSelectByPrimaryKey="false" enableUpdateByPrimaryKey="false"
+               enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="FALSE"
+               enableSelectByExample="true" selectByExampleQueryId="false">
+
+        </table>
+
+    </context>
+
+</generatorConfiguration>

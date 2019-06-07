@@ -1,0 +1,10 @@
+#
+#   采用自己封装的jedis连接配置 通过
+#
+redis:
+  jedis:
+    host: 127.0.0.1
+    port: 6379
+    max-idle: 5
+    max-total: 10
+    max-wait-millis: 3000
