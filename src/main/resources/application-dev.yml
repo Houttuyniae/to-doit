@@ -57,3 +57,11 @@ wx:
       appid: wx249ae76c3a78aef5
       secret: b2b75e9febef78fd27cc23f97e77de7a
       msgDataFormat: JSON
+
+
+
+git:
+  path: 123
+  github:
+    username: 123
+    password: 123
