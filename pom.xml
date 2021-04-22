@@ -28,7 +28,7 @@
         <commons.io.version>2.5</commons.io.version>
         <commons.configuration.version>1.10</commons.configuration.version>
         <weixin-java-miniapp.version>3.3.0</weixin-java-miniapp.version>
-        <shiro.version>1.4.0</shiro.version>
+        <shiro.version>1.7.0</shiro.version>
         <httpclient.version>4.5.8</httpclient.version>
         <jgit.version>5.3.1.201904271842-r</jgit.version>
 	</properties>
