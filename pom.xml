@@ -25,7 +25,7 @@
         <fastjson.version>1.2.56</fastjson.version>
         <joda.time.version>2.9.9</joda.time.version>
         <commons.lang.version>2.6</commons.lang.version>
-        <commons.io.version>2.5</commons.io.version>
+        <commons.io.version>2.7</commons.io.version>
         <commons.configuration.version>1.10</commons.configuration.version>
         <weixin-java-miniapp.version>3.3.0</weixin-java-miniapp.version>
         <shiro.version>1.4.0</shiro.version>
